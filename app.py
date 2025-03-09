@@ -242,11 +242,23 @@ elif current_page == "AboutUs":
             📊 About Us
         </h3>
         <hr style="background-color:black;"/>
-        <p style="line-height: 1.2; color: #2E9AFF;font-size:20px;">
-        Our project leverages deep learning to analyze environmental images and classify air quality into six categories. 
-        Using a ViT and ResNet based model, it accurately detects pollution levels and provides insights to support sustainable urban development.
-        The system helps monitor air quality trends, raises awareness, and offers precautionary measures to minimize health risks. 
-        By integrating AI into environmental monitoring, our project aims to contribute to a cleaner and healthier future.
+        <p style="line-height: 1.5; color: #2E9AFF;font-size:20px;">
+            Our project leverages advanced deep learning techniques to analyze environmental images and classify air quality into six distinct categories. 
+            By utilizing a hybrid model combining Vision Transformers (ViT) and ResNet architectures, we achieve high accuracy in detecting pollution levels 
+            and provide actionable insights to support sustainable urban development.
+        </p>
+        <p style="line-height: 1.5; color: #2E9AFF;font-size:20px;">
+            The system is designed to monitor air quality trends, raise public awareness, and offer precautionary measures to minimize health risks. 
+            By integrating artificial intelligence into environmental monitoring, our project aims to contribute to a cleaner, healthier, and more sustainable future.
+        </p>
+        <p style="line-height: 1.5; color: #2E9AFF;font-size:20px;">
+            Key Features:
+            <ul style="list-style-type: disc; color: #2E9AFF;font-size:20px;">
+                <li>Accurate air quality classification using ViT + ResNet.</li>
+                <li>Real-time monitoring and trend analysis.</li>
+                <li>Precautionary measures tailored to each air quality level.</li>
+                <li>Support for sustainable urban planning and policy-making.</li>
+            </ul>
         </p>
         """,
         unsafe_allow_html=True
@@ -254,22 +266,25 @@ elif current_page == "AboutUs":
     
 elif current_page == "Model Visualisations":
     st.markdown(
-    """
-    <h3 style="color: black;font-weight:bold;">
-        📈 Visualisations of Model 
-    </h3>
-    <h2 style="color: #2E9AFF;font-size:22px">
-        Graphs and charts related to air quality classification
-    </h2>
-    <hr style="background-color:black;"/>
-    <p style="line-height: 1.2; color: #2E9AFF;font-size:20px;">
-        The ViT+ResNet model demonstrated superior performance compared to other models, as evident from the visualizations. It achieved higher accuracy, lower loss, and balanced precision-recall scores, indicating effective feature extraction and classification. The training and validation trends suggest minimal overfitting, confirming the model's robustness in handling air pollution classification tasks.
+        """
+        <h3 style="color: black;font-weight:bold;">
+            📈 Model Visualisations
+        </h3>
+        <h2 style="color: #2E9AFF;font-size:22px">
+            Graphs and charts related to air quality classification
+        </h2>
+        <hr style="background-color:black;"/>
+        <p style="line-height: 1.5; color: #2E9AFF;font-size:20px;">
+            The ViT + ResNet model demonstrated superior performance compared to other models, as evident from the visualizations below. 
+            It achieved higher accuracy, lower loss, and balanced precision-recall scores, indicating effective feature extraction and classification. 
+            The training and validation trends suggest minimal overfitting, confirming the model's robustness in handling air pollution classification tasks.
         </p>
         <br/>
-    """,
-    unsafe_allow_html=True
+        """,
+        unsafe_allow_html=True
     )
-    # Convert Google Drive view links to direct links
+
+    # Function to convert Google Drive view links to direct download links
     def get_direct_link(drive_link):
         file_id = drive_link.split("/")[-2]  # Extract the file ID
         return f"https://drive.google.com/uc?export=download&id={file_id}"
@@ -299,9 +314,9 @@ elif current_page == "Model Visualisations":
             response = requests.get(direct_link, stream=True)
             if response.status_code == 200:
                 image = Image.open(BytesIO(response.content))
-                st.image(image, caption=f"Image {idx + 1}", use_container_width=True)
+                st.image(image, caption=f"Visualization {idx + 1}", use_container_width=True)
             else:
-                st.warning(f"⚠ Could not load Image {idx + 1}")
+                st.warning(f"⚠ Could not load Visualization {idx + 1}")
         
         except Exception as e:
-            st.error(f"Error loading Image {idx + 1}: {e}")
+            st.error(f"Error loading Visualization {idx + 1}: {e}")
