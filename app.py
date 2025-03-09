@@ -133,14 +133,10 @@ if "page" not in st.session_state:
     st.session_state["page"] = "Home"
 
 # Sidebar navigation with links
-st.sidebar.markdown("""
-    <a href="javascript:void(0);" onclick="window.streamlitSessionState.set('page', 'Home');" class="sidebar-link" target="_self">🏠 Home</a>
-    <a href="javascript:void(0);" onclick="window.streamlitSessionState.set('page', 'AboutUs');" class="sidebar-link" target="_self">📊 About Us</a>
-    <a href="javascript:void(0);" onclick="window.streamlitSessionState.set('page', 'Model Visualisations');" class="sidebar-link" target="_self">📈 Model Visualisations</a>
-    """, unsafe_allow_html=True)
+page = st.sidebar.radio("Navigation", ["Home", "About Us", "Model Visualisations"])
 
 # Page content
-if st.session_state["page"] == "Home":
+if page == "Home":
     st.markdown(
     """
     <h3 style="color: black;font-weight:bold;">
@@ -235,7 +231,7 @@ if st.session_state["page"] == "Home":
                 except Exception as e:
                     st.error(f"❌ An error occurred: {e}")
 
-elif st.session_state["page"] == "AboutUs":
+elif page == "About Us":
     st.markdown(
         """
         <h3 style="color: black;font-weight:bold;">
@@ -264,7 +260,7 @@ elif st.session_state["page"] == "AboutUs":
         unsafe_allow_html=True
     )
     
-elif st.session_state["page"] == "Model Visualisations":
+elif page == "Model Visualisations":
     st.markdown(
         """
         <h3 style="color: black;font-weight:bold;">
