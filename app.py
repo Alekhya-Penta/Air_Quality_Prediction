@@ -17,7 +17,6 @@ st.markdown(
         background-color: #E3F2FD; /* Light pastel blue */
     }
     
-    
     /* Sidebar links styling */
     .sidebar-link {
         font-size: 18px;
@@ -129,7 +128,6 @@ aq_descriptions = {
     }
 }
 
-
 # Sidebar navigation with links
 st.sidebar.markdown("""
     <a href="/?page=Home" class="sidebar-link" target="_self">🏠 Home</a>
@@ -138,7 +136,7 @@ st.sidebar.markdown("""
     """, unsafe_allow_html=True)
 
 # Get query parameters
-query_params = st.experimental_get_query_params()
+query_params = st.query_params
 current_page = query_params.get("page", ["Home"])[0]
 
 # Page content
@@ -213,7 +211,6 @@ if current_page == "Home":
                         Prediction: {result['Label']}
                     </h2>
                     <hr style="background-color:black;"/>
-
                     """,
                     unsafe_allow_html=True
                     )
@@ -235,8 +232,6 @@ if current_page == "Home":
                     unsafe_allow_html=True
                     )
 
-                  
-            
                 except Exception as e:
                     st.error(f"❌ An error occurred: {e}")
 
@@ -304,7 +299,7 @@ elif current_page == "Model Visualisations":
             response = requests.get(direct_link, stream=True)
             if response.status_code == 200:
                 image = Image.open(BytesIO(response.content))
-                st.image(image, caption=f"Image {idx + 1}", use_column_width=True)
+                st.image(image, caption=f"Image {idx + 1}", use_container_width=True)
             else:
                 st.warning(f"⚠ Could not load Image {idx + 1}")
         
