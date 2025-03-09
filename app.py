@@ -9,7 +9,7 @@ import os
 import time
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
-# Custom styles to change white text to black
+# Custom styles to change white text to black and style sidebar buttons
 st.markdown(
     """
     <style>
@@ -33,6 +33,25 @@ st.markdown(
         color: white;
         text-decoration: none;
         background-color: rgba(255,255,255,0.5);
+    }
+
+    /* Style for sidebar radio buttons */
+    .st-eb {
+        font-size: 18px !important;
+        font-weight: bold !important;
+        color: #2E9AFF !important;
+        padding: 10px !important;
+        border-radius: 5px !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        transition: background-color 0.3s ease, color 0.3s ease !important;
+    }
+    .st-eb:hover {
+        background-color: rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+    }
+    .st-eb:checked {
+        background-color: #2E9AFF !important;
+        color: white !important;
     }
     </style>
     """,
@@ -132,8 +151,12 @@ aq_descriptions = {
 if "page" not in st.session_state:
     st.session_state["page"] = "Home"
 
-# Sidebar navigation with links
-page = st.sidebar.radio("Navigation", ["Home", "About Us", "Model Visualisations"])
+# Sidebar navigation with styled radio buttons
+page = st.sidebar.radio(
+    "Navigation",
+    ["Home", "About Us", "Model Visualisations"],
+    key="navigation"
+)
 
 # Page content
 if page == "Home":
