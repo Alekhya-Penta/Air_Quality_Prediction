@@ -128,19 +128,19 @@ aq_descriptions = {
     }
 }
 
+# Initialize session state for page navigation
+if "page" not in st.session_state:
+    st.session_state["page"] = "Home"
+
 # Sidebar navigation with links
 st.sidebar.markdown("""
-    <a href="/?page=Home" class="sidebar-link" target="_self">🏠 Home</a>
-    <a href="/?page=AboutUs" class="sidebar-link" target="_self">📊 About Us</a>
-    <a href="/?page=Model Visualisations" class="sidebar-link" target="_self">📈 Model Visualisations</a>
+    <a href="javascript:void(0);" onclick="window.streamlitSessionState.set('page', 'Home');" class="sidebar-link" target="_self">🏠 Home</a>
+    <a href="javascript:void(0);" onclick="window.streamlitSessionState.set('page', 'AboutUs');" class="sidebar-link" target="_self">📊 About Us</a>
+    <a href="javascript:void(0);" onclick="window.streamlitSessionState.set('page', 'Model Visualisations');" class="sidebar-link" target="_self">📈 Model Visualisations</a>
     """, unsafe_allow_html=True)
 
-# Get query parameters
-query_params = st.query_params
-current_page = query_params.get("page", ["Home"])[0]
-
 # Page content
-if current_page == "Home":
+if st.session_state["page"] == "Home":
     st.markdown(
     """
     <h3 style="color: black;font-weight:bold;">
@@ -235,7 +235,7 @@ if current_page == "Home":
                 except Exception as e:
                     st.error(f"❌ An error occurred: {e}")
 
-elif current_page == "AboutUs":
+elif st.session_state["page"] == "AboutUs":
     st.markdown(
         """
         <h3 style="color: black;font-weight:bold;">
@@ -264,7 +264,7 @@ elif current_page == "AboutUs":
         unsafe_allow_html=True
     )
     
-elif current_page == "Model Visualisations":
+elif st.session_state["page"] == "Model Visualisations":
     st.markdown(
         """
         <h3 style="color: black;font-weight:bold;">
